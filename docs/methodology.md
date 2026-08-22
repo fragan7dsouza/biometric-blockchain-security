@@ -1,5 +1,11 @@
 # Algorithmic Methodology
 
+## 0. Biometric Landmark Extraction
+The system captures 106 2D facial landmark coordinates $P = \{(x_i, y_i)\}_{i=1}^{106}$:
+- **Reference Paper Architecture (Sannidhan et al., 2024)**: Utilizes a MobileNetV2 deep neural network trained for 106-point landmark regression.
+- **Prototype Implementation**: Uses Google MediaPipe Face Mesh (468 3D landmarks downsampled to 106 canonical coordinates via uniform indexing `np.linspace(0, 467, 106)`).
+- **Synthetic Fallback**: When image captures are unavailable or for controlled benchmark experiments, a 106-landmark anatomical facial generator constructs reproducible subject profiles with configurable zero-mean Gaussian capture noise and rigid spatial transforms.
+
 ## 1. Biometric Landmark Normalization
 Given raw 2D landmark coordinates $P = \{(x_i, y_i)\}_{i=1}^{106}$:
 1. **Centroid Subtraction**:

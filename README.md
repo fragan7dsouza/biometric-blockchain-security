@@ -128,13 +128,15 @@ python main.py verify --tx-id "tx_101" --combined-hex "<HEX_STRING>"
 
 ## Baseline Architecture Comparison
 
-| Architecture | Key Entropy (bits/byte) | Runs Test Z-Stat | Randomness Status |
-| :--- | :--- | :--- | :--- |
-| **Baseline A** (Raw -> SHA-256) | 7.92 | 0.42 | Passed |
-| **Baseline B** (Raw -> HKDF) | 7.98 | 0.15 | Passed |
-| **Baseline C** (GA -> HKDF) | 7.97 | 0.28 | Passed |
-| **Base Paper** (GA -> LFSR) | 3.24 (bits/symbol) | 1.6083 | Passed |
-| **Proposed System** (GA -> LFSR -> HKDF -> AES-GCM) | **7.99** | **0.12** | **Passed** |
+*(Reproduced via `python scripts/run_evaluation.py` over $N=3,200$ byte streams / 1,000 symbol sequences)*
+
+| Architecture | Key Stream Entropy | Runs Test Z-Stat | Runs Test P-Value | Randomness Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Baseline A** (Raw -> SHA-256) | 7.9457 (bits/byte) | 0.9244 | 0.3553 | Passed |
+| **Baseline B** (Raw -> HKDF) | 7.9438 (bits/byte) | 0.6667 | 0.5050 | Passed |
+| **Baseline C** (GA -> HKDF) | 7.9433 (bits/byte) | 0.4715 | 0.6373 | Passed |
+| **Base Paper** (GA -> LFSR) | 7.8941 (bits/symbol) | 0.0000 | 0.0000 | Failed (Low Runs Independence) |
+| **Proposed System** (GA -> LFSR -> HKDF -> AES-GCM) | **7.9405 (bits/byte)** | **-0.7466** | **0.4553** | **Passed** |
 
 ---
 

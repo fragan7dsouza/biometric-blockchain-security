@@ -46,6 +46,38 @@ class BiometricBlockchainPipeline:
         self.blockchain = Blockchain(difficulty=self.config.blockchain.difficulty)
         self.verifier = BlockchainVerifier(self.blockchain)
 
+    def _build_ga_training_dataset(self, primary_norm_features: np.ndarray) -> Dict[int, List[np.ndarray]]:
+        """
+        Constructs a multi-subject multi-capture dataset for GA optimization.
+        Ensures intra-class stability and inter-class separation fitness components
+        are meaningfully evaluated during feature selection.
+        """
+        dataset: Dict[int, List[np.ndarray]] = {}
+
+        # Primary Subject (ID 1): 5 capture perturbations
+        primary_captures = []
+        rng = np.random.RandomState(42)
+        for _ in range(5):
+            noise = rng.normal(0, 0.015, size=primary_norm_features.shape)
+            perturbed = primary_norm_features + noise
+            primary_captures.append(perturbed)
+        dataset[1] = primary_captures
+
+        # Reference Subjects (IDs 2..5): 5 captures each
+        for sub in range(2, 6):
+            sub_caps = []
+            for cap_idx in range(5):
+                lm = self.extractor.generate_synthetic_subject_landmarks(
+                    subject_id=sub,
+                    capture_index=cap_idx,
+                    noise_level=0.02
+                )
+                norm_f = self.normalizer.normalize_landmarks(lm)
+                sub_caps.append(norm_f)
+            dataset[sub] = sub_caps
+
+        return dataset
+
     def process_end_to_end(
         self,
         image_or_landmarks: Any,
@@ -66,8 +98,8 @@ class BiometricBlockchainPipeline:
         # 2. Feature Normalization
         norm_features = self.normalizer.normalize_landmarks(landmarks)
 
-        # 3. GA Feature Selection Mask (using self-captures dict for single subject)
-        subject_dict = {1: [norm_features]}
+        # 3. GA Feature Selection Mask (using multi-subject dataset for non-degenerate fitness)
+        subject_dict = self._build_ga_training_dataset(norm_features)
         best_chromosome, ga_history = self.ga_optimizer.optimize(
             feature_dim=len(norm_features),
             subject_captures=subject_dict
@@ -147,55 +179,52 @@ class BiometricBlockchainPipeline:
         - Proposed System: Landmarks -> Normalization -> GA -> Seed -> LFSR -> HKDF -> AES-GCM -> Blockchain
         """
         norm_features = self.normalizer.normalize_landmarks(sample_landmarks)
+        subject_dict = self._build_ga_training_dataset(norm_features)
 
-        # Baseline A: Raw Features -> SHA-256
-        raw_bytes = norm_features.tobytes()
-        key_base_a = hashlib.sha256(raw_bytes).digest()
-
-        # Baseline B: Raw Features -> HKDF
-        key_base_b = self.hkdf_deriver.derive_key(raw_bytes)
-
-        # Baseline C: GA Features -> HKDF
-        chrom, _ = self.ga_optimizer.optimize(len(norm_features), {1: [norm_features]})
+        # Optimize GA features with proper multi-subject dataset
+        chrom, _ = self.ga_optimizer.optimize(len(norm_features), subject_dict)
         ga_feats = self.ga_optimizer.apply_mask(norm_features, chrom)
-        key_base_c = self.hkdf_deriver.derive_key(ga_feats.tobytes())
+
+        # Generate multi-key streams (100 keys x 32 bytes = 3,200 bytes) for statistical evaluation
+        stream_a = b''.join([hashlib.sha256(norm_features.tobytes() + i.to_bytes(4, 'big')).digest() for i in range(100)])
+        stream_b = b''.join([self.hkdf_deriver.derive_key(norm_features.tobytes(), custom_info=f"hkdf_info_{i}".encode()) for i in range(100)])
+        stream_c = b''.join([self.hkdf_deriver.derive_key(ga_feats.tobytes(), custom_info=f"ga_info_{i}".encode()) for i in range(100)])
+
+        # Proposed System Stream (LFSR expansion + HKDF)
+        seed_int = self.seed_generator.generate_seed_integer(ga_feats)
+        lfsr = LFSRBitGenerator(seed_state=seed_int)
+        stream_proposed = b''.join([self.hkdf_deriver.derive_key(lfsr.generate_bytes(64), custom_info=f"proposed_{i}".encode()) for i in range(100)])
 
         # Base Paper: LFSR 8-register Subsequences
         paper_lfsr = PaperLFSRSubsequenceGenerator()
         paper_seqs = paper_lfsr.generate_subsequences(norm_features, num_iterations=1287)
         paper_flat = np.array(paper_seqs).flatten()
 
-        # Proposed System Key
-        seed_int = self.seed_generator.generate_seed_integer(ga_feats)
-        lfsr = LFSRBitGenerator(seed_state=seed_int)
-        lfsr_bytes = lfsr.generate_bytes(64)
-        key_proposed = self.hkdf_deriver.derive_key(lfsr_bytes)
-
         # Metrics computation
         results = {}
-        for name, key in [
-            ('Baseline_A_SHA256', key_base_a),
-            ('Baseline_B_HKDF', key_base_b),
-            ('Baseline_C_GA_HKDF', key_base_c),
-            ('Proposed_GA_LFSR_HKDF', key_proposed)
+        for name, stream in [
+            ('Baseline_A_SHA256', stream_a),
+            ('Baseline_B_HKDF', stream_b),
+            ('Baseline_C_GA_HKDF', stream_c),
+            ('Proposed_GA_LFSR_HKDF', stream_proposed)
         ]:
-            entropy = calculate_shannon_entropy_bytes(key)
-            z_stat, p_val, is_rand = runs_test(key)
+            entropy = calculate_shannon_entropy_bytes(stream)
+            z_stat, p_val, is_rand = runs_test(stream)
             results[name] = {
-                'entropy_bits_per_byte': entropy,
-                'runs_z_stat': z_stat,
-                'runs_p_value': p_val,
+                'entropy_bits_per_byte': round(entropy, 4),
+                'runs_z_stat': round(z_stat, 4),
+                'runs_p_value': round(p_val, 4),
                 'is_random': is_rand,
-                'key_bytes_len': len(key)
+                'stream_bytes_len': len(stream)
             }
 
         # Add Base Paper evaluation
         paper_entropy = calculate_shannon_entropy_bits(paper_flat)
         paper_z, paper_p, paper_rand = runs_test(paper_flat[:1000])
         results['Base_Paper_GA_LFSR'] = {
-            'entropy_bits_per_symbol': paper_entropy,
-            'runs_z_stat': paper_z,
-            'runs_p_value': paper_p,
+            'entropy_bits_per_symbol': round(paper_entropy, 4),
+            'runs_z_stat': round(paper_z, 4),
+            'runs_p_value': round(paper_p, 4),
             'is_random': paper_rand,
             'total_subsequences': len(paper_seqs)
         }

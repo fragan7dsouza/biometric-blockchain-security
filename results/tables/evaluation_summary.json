@@ -1,35 +1,35 @@
 {
   "architecture_baselines": {
     "Baseline_A_SHA256": {
-      "entropy_bits_per_byte": 5.0,
-      "runs_z_stat": -0.24663816210415457,
-      "runs_p_value": 0.8051882676227038,
+      "entropy_bits_per_byte": 7.9457,
+      "runs_z_stat": 0.9244,
+      "runs_p_value": 0.3553,
       "is_random": true,
-      "key_bytes_len": 32
+      "stream_bytes_len": 3200
     },
     "Baseline_B_HKDF": {
-      "entropy_bits_per_byte": 4.788909765557392,
-      "runs_z_stat": -2.132338274212394,
-      "runs_p_value": 0.032979047756801494,
-      "is_random": false,
-      "key_bytes_len": 32
+      "entropy_bits_per_byte": 7.9438,
+      "runs_z_stat": 0.6667,
+      "runs_p_value": 0.505,
+      "is_random": true,
+      "stream_bytes_len": 3200
     },
     "Baseline_C_GA_HKDF": {
-      "entropy_bits_per_byte": 4.875,
-      "runs_z_stat": 1.2905304021005561,
-      "runs_p_value": 0.19686656310297534,
+      "entropy_bits_per_byte": 7.9433,
+      "runs_z_stat": 0.4715,
+      "runs_p_value": 0.6373,
       "is_random": true,
-      "key_bytes_len": 32
+      "stream_bytes_len": 3200
     },
     "Proposed_GA_LFSR_HKDF": {
-      "entropy_bits_per_byte": 4.875,
-      "runs_z_stat": -0.0069005437607873995,
-      "runs_p_value": 0.9944942063675164,
+      "entropy_bits_per_byte": 7.9405,
+      "runs_z_stat": -0.7466,
+      "runs_p_value": 0.4553,
       "is_random": true,
-      "key_bytes_len": 32
+      "stream_bytes_len": 3200
     },
     "Base_Paper_GA_LFSR": {
-      "entropy_bits_per_symbol": 7.894102755671765,
+      "entropy_bits_per_symbol": 7.8941,
       "runs_z_stat": 0.0,
       "runs_p_value": 0.0,
       "is_random": false,

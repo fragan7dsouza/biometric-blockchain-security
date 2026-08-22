@@ -1,7 +1,15 @@
 """
 Facial Landmark Extraction Submodule.
-Extracts 106 facial landmark coordinates (x, y) from face images.
-Includes synthetic landmark generator for deterministic evaluation and benchmarking.
+Extracts 106 2D facial landmark coordinates (x, y) from face images.
+
+Methodology Note:
+The reference paper (Sannidhan et al., 2024) utilizes a MobileNetV2 deep learning model
+specifically trained for 106-point landmark regression.
+In this implementation, real-image landmark extraction employs Google MediaPipe Face Mesh
+(468 high-density 3D landmarks downsampled uniformly via canonical indexing to 106 2D points).
+When image inputs are unavailable or in headless benchmark modes, a deterministic 106-landmark
+synthetic facial generator is used to produce anatomical facial landmark configurations with
+controlled Gaussian noise for reproducible intra/inter-subject evaluations.
 """
 
 import numpy as np
