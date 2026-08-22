@@ -1,0 +1,48 @@
+{
+  "architecture_baselines": {
+    "Baseline_A_SHA256": {
+      "entropy_bits_per_byte": 5.0,
+      "runs_z_stat": -0.24663816210415457,
+      "runs_p_value": 0.8051882676227038,
+      "is_random": true,
+      "key_bytes_len": 32
+    },
+    "Baseline_B_HKDF": {
+      "entropy_bits_per_byte": 4.788909765557392,
+      "runs_z_stat": -2.132338274212394,
+      "runs_p_value": 0.032979047756801494,
+      "is_random": false,
+      "key_bytes_len": 32
+    },
+    "Baseline_C_GA_HKDF": {
+      "entropy_bits_per_byte": 4.875,
+      "runs_z_stat": 1.2905304021005561,
+      "runs_p_value": 0.19686656310297534,
+      "is_random": true,
+      "key_bytes_len": 32
+    },
+    "Proposed_GA_LFSR_HKDF": {
+      "entropy_bits_per_byte": 4.875,
+      "runs_z_stat": -0.0069005437607873995,
+      "runs_p_value": 0.9944942063675164,
+      "is_random": true,
+      "key_bytes_len": 32
+    },
+    "Base_Paper_GA_LFSR": {
+      "entropy_bits_per_symbol": 7.894102755671765,
+      "runs_z_stat": 0.0,
+      "runs_p_value": 0.0,
+      "is_random": false,
+      "total_subsequences": 1287
+    }
+  },
+  "biometric_stability": {
+    "intra_mean": 0.25440753450630155,
+    "intra_std": 0.18845005590682673,
+    "inter_mean": 7.903904301782297,
+    "inter_std": 4.8352698585116896,
+    "frr": 0.24,
+    "far": 0.0,
+    "threshold": 0.35
+  }
+}

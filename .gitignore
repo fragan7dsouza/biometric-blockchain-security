@@ -1,0 +1,21 @@
+# Python compiled bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Data & Scratch
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/README.md
