@@ -14,6 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Run full test suite (set `PYTHONPATH` on PowerShell): `$env:PYTHONPATH='.'; pytest tests/`
 - Run a single test file: `$env:PYTHONPATH='.'; pytest tests/test_biometric.py`
 - Run a single test function: `$env:PYTHONPATH='.'; pytest tests/test_biometric.py -k test_translation_and_scale_invariance`
+- Test files map 1:1 to `src/` submodules: `test_biometric.py`, `test_ga.py`, `test_lfsr.py`, `test_key_derivation.py`, `test_encryption.py`, `test_blockchain.py`, `test_evaluation.py`.
 
 ---
 
@@ -56,8 +57,15 @@ src/evaluation/ (entropy, correlation, randomness, hamming_distance, biometric_s
 ```
 
 ### Module Responsibilities
-- `src/config.py`: Centralized configuration dataclasses (`BiometricConfig`, `GAConfig`, `LFSRConfig`, `CryptographicConfig`, `BlockchainConfig`).
-- `src/pipeline.py`: Main system orchestrator (`BiometricBlockchainPipeline`) and baseline comparison engine (SHA-256, HKDF, GA-HKDF, Base Paper GA-LFSR, Proposed System).
+- `src/config.py`: Centralized configuration dataclasses (`BiometricConfig`, `GAConfig`, `LFSRConfig`, `CryptographicConfig`, `BlockchainConfig`) — every stage of the pipeline is parameterized from `DEFAULT_CONFIG`/`AppConfig` rather than hardcoded constants.
+- `src/pipeline.py`: Main system orchestrator (`BiometricBlockchainPipeline`) and baseline comparison engine (SHA-256, HKDF, GA-HKDF, Base Paper GA-LFSR, Proposed System). `_build_ga_training_dataset()` synthesizes a multi-subject multi-capture dataset (1 primary subject with 5 perturbed captures + 4 synthetic reference subjects) so the GA's intra-class stability and inter-class separation fitness terms are non-degenerate.
 - `main.py`: Main CLI entry point.
 - `scripts/`: Executable scripts (`run_pipeline.py`, `run_evaluation.py`).
 - `experiments/`: 5 research Jupyter notebooks (`01_feature_analysis.ipynb` through `05_blockchain_analysis.ipynb`).
+- `docs/`: `architecture.md`, `methodology.md` (algorithmic formulas per stage, including MediaPipe 468→106 landmark downsampling vs. the paper's MobileNetV2 model), `security_analysis.md`, `experiment_plan.md`.
+- `results/tables/evaluation_summary.json`: Machine-readable output of `run_evaluation.py` — the source of truth for the baseline comparison numbers quoted in `README.md`.
+
+### Notes for Future Work
+- Landmark extraction uses MediaPipe Face Mesh (468 points downsampled to 106 via `np.linspace`) or a deterministic synthetic generator — not a custom-trained MobileNetV2 as in the reference paper. Keep this distinction explicit in any docs/paper text (see `src/biometric/landmark_extraction.py` docstrings).
+- Stream-level randomness/entropy evaluation (`run_baseline_comparisons()`) concatenates 100 derived keys (3,200 bytes) per architecture rather than measuring a single 32-byte key, since a single key's entropy is capped at `log2(32) = 5.0` bits/byte.
+- Without a fuzzy extractor/ECC helper dataset, sensor noise across distinct biometric captures produces distinct keys — this is a known limitation, not a bug (see README "Security Principles & Limitations").
