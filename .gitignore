@@ -13,7 +13,7 @@ htmlcov/
 .venv/
 venv/
 env/
-
+test.txt
 # Data & Scratch
 data/raw/*
 !data/raw/README.md
