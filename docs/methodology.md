@@ -22,8 +22,9 @@ Given raw 2D landmark coordinates $P = \{(x_i, y_i)\}_{i=1}^{106}$:
 
 ## 3. LFSR Pseudo-Random Expansion
 - **Galois LFSR**: 32-bit register with primitive feedback polynomial $x^{32} + x^{31} + x^{29} + x^1 + 1$.
-- **Base Paper Mechanism**: 8 registers $X_0 \dots X_7$ with modulus-256 addition:
-  $$X_0^{(t+1)} = (X_7^{(t)} + \sum_{\text{even } i} X_i^{(t)} + t) \pmod{256}$$
+- **Base Paper Mechanism**: 8 registers $X_0 \dots X_7$, feedback polynomial $x^7+x^5+x^3+x+1$, updated per iteration $t$ by (Sannidhan et al., 2024, Eqs. 4–6):
+  $$X_7^{\text{new}} = (X_0^{(t)} + X_2^{(t)} + X_4^{(t)} + X_6^{(t)}) \pmod{256}$$
+  $$X_{n-1}^{(t+1)} = X_n^{(t)} \quad \text{for } n = 1 \dots 7 \text{ (right shift)}, \qquad X_7^{(t+1)} = X_7^{\text{new}}$$
 
 ## 4. Cryptographic Key Derivation (HKDF-SHA256)
 Using RFC 5869:
