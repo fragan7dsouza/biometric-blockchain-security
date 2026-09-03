@@ -9,7 +9,7 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
-
+demo.mp4
 # Environments
 .venv/
 venv/
