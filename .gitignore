@@ -3,26 +3,13 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.agents
-.claude
+
 # Testing & Coverage
 .pytest_cache/
 .coverage
 htmlcov/
-demo.mp4
+
 # Environments
 .venv/
 venv/
 env/
-test.txt
-# Data & Scratch
-data/raw/*
-!data/raw/README.md
-data/processed/*
-!data/processed/README.md
-Skillsync.docx
-# Graphify
-graphify-out/
-.graphify_analysis.json
-skills-lock.json
-docs

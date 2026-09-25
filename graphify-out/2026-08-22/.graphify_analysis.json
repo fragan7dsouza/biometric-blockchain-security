@@ -1,0 +1,433 @@
+{
+  "communities": {
+    "0": [
+      "appconfig",
+      "src_blockchain_blockchain",
+      "src_blockchain_blockchain_block",
+      "src_blockchain_blockchain_block_compute_hash",
+      "src_blockchain_blockchain_block_from_dict",
+      "src_blockchain_blockchain_block_init",
+      "src_blockchain_blockchain_block_mine_block",
+      "src_blockchain_blockchain_block_to_dict",
+      "src_blockchain_blockchain_blockchain",
+      "src_blockchain_blockchain_blockchain_add_transaction",
+      "src_blockchain_blockchain_blockchain_create_genesis_block",
+      "src_blockchain_blockchain_blockchain_find_transaction_by_id",
+      "src_blockchain_blockchain_blockchain_get_latest_block",
+      "src_blockchain_blockchain_blockchain_init",
+      "src_blockchain_blockchain_blockchain_is_chain_valid",
+      "src_blockchain_blockchain_blockchain_load_from_file",
+      "src_blockchain_blockchain_blockchain_mine_pending_transactions",
+      "src_blockchain_blockchain_blockchain_save_to_file",
+      "src_blockchain_blockchain_blockchain_to_json",
+      "src_blockchain_blockchain_py_any",
+      "src_blockchain_blockchain_rationale_1",
+      "src_blockchain_blockchain_rationale_127",
+      "src_blockchain_blockchain_rationale_138",
+      "src_blockchain_blockchain_rationale_14",
+      "src_blockchain_blockchain_rationale_159",
+      "src_blockchain_blockchain_rationale_163",
+      "src_blockchain_blockchain_rationale_180",
+      "src_blockchain_blockchain_rationale_204",
+      "src_blockchain_blockchain_rationale_212",
+      "src_blockchain_blockchain_rationale_219",
+      "src_blockchain_blockchain_rationale_229",
+      "src_blockchain_blockchain_rationale_58",
+      "src_blockchain_blockchain_rationale_78",
+      "src_blockchain_blockchain_rationale_92",
+      "src_blockchain_blockchain_transaction",
+      "src_blockchain_blockchain_transaction_from_dict",
+      "src_blockchain_blockchain_transaction_init",
+      "src_blockchain_blockchain_transaction_to_dict",
+      "src_blockchain_verifier",
+      "src_blockchain_verifier_blockchainverifier",
+      "src_blockchain_verifier_blockchainverifier_init",
+      "src_blockchain_verifier_rationale_1",
+      "src_blockchain_verifier_rationale_13",
+      "src_pipeline_biometricblockchainpipeline_init",
+      "tests_test_blockchain",
+      "tests_test_blockchain_rationale_1",
+      "tests_test_blockchain_test_blockchain_mining_and_validation",
+      "tests_test_blockchain_test_blockchain_verifier"
+    ],
+    "1": [
+      "main",
+      "main_main",
+      "main_rationale_1",
+      "scripts_run_evaluation",
+      "scripts_run_evaluation_rationale_1",
+      "scripts_run_evaluation_run",
+      "scripts_run_pipeline",
+      "scripts_run_pipeline_rationale_1",
+      "scripts_run_pipeline_run",
+      "src_biometric_landmark_extraction",
+      "src_biometric_landmark_extraction_landmarkextractor",
+      "src_biometric_landmark_extraction_landmarkextractor_init",
+      "src_biometric_landmark_extraction_rationale_1",
+      "src_biometric_landmark_extraction_rationale_21",
+      "src_biometric_preprocessing",
+      "src_biometric_preprocessing_featurenormalizer",
+      "src_biometric_preprocessing_featurenormalizer_init",
+      "src_biometric_preprocessing_rationale_1",
+      "src_biometric_preprocessing_rationale_12",
+      "src_evaluation_biometric_stability",
+      "src_evaluation_biometric_stability_evaluate_biometric_stability",
+      "src_evaluation_biometric_stability_py_any",
+      "src_evaluation_biometric_stability_py_ndarray",
+      "src_evaluation_biometric_stability_rationale_1",
+      "src_evaluation_biometric_stability_rationale_15",
+      "src_evaluation_hamming_distance",
+      "src_evaluation_hamming_distance_rationale_1",
+      "src_pipeline",
+      "src_pipeline_biometricblockchainpipeline",
+      "src_pipeline_rationale_1",
+      "src_pipeline_rationale_28",
+      "tests_test_biometric",
+      "tests_test_biometric_rationale_1",
+      "tests_test_biometric_test_feature_normalizer",
+      "tests_test_biometric_test_landmark_extractor_synthetic",
+      "tests_test_biometric_test_translation_and_scale_invariance"
+    ],
+    "2": [
+      "src_evaluation_correlation",
+      "src_evaluation_correlation_calculate_average_pearson_correlation",
+      "src_evaluation_correlation_calculate_pearson_correlation",
+      "src_evaluation_correlation_py_ndarray",
+      "src_evaluation_correlation_rationale_1",
+      "src_evaluation_correlation_rationale_11",
+      "src_evaluation_correlation_rationale_31",
+      "src_evaluation_entropy",
+      "src_evaluation_entropy_calculate_shannon_entropy_bits",
+      "src_evaluation_entropy_calculate_shannon_entropy_bytes",
+      "src_evaluation_entropy_py_ndarray",
+      "src_evaluation_entropy_rationale_1",
+      "src_evaluation_entropy_rationale_11",
+      "src_evaluation_entropy_rationale_26",
+      "src_evaluation_hamming_distance_calculate_average_pairwise_hamming",
+      "src_evaluation_hamming_distance_calculate_hamming_distance",
+      "src_evaluation_hamming_distance_py_ndarray",
+      "src_evaluation_hamming_distance_rationale_11",
+      "src_evaluation_hamming_distance_rationale_42",
+      "src_evaluation_randomness",
+      "src_evaluation_randomness_chi_square_uniformity_test",
+      "src_evaluation_randomness_nist_monobit_frequency_test",
+      "src_evaluation_randomness_py_ndarray",
+      "src_evaluation_randomness_rationale_1",
+      "src_evaluation_randomness_rationale_13",
+      "src_evaluation_randomness_rationale_54",
+      "src_evaluation_randomness_rationale_77",
+      "src_evaluation_randomness_runs_test",
+      "tests_test_evaluation",
+      "tests_test_evaluation_rationale_1",
+      "tests_test_evaluation_test_hamming_distance",
+      "tests_test_evaluation_test_pearson_correlation",
+      "tests_test_evaluation_test_runs_test",
+      "tests_test_evaluation_test_shannon_entropy"
+    ],
+    "3": [
+      "any",
+      "src_config_lfsrconfig",
+      "src_key_generation_lfsr",
+      "src_key_generation_lfsr_lfsrbitgenerator",
+      "src_key_generation_lfsr_lfsrbitgenerator_generate_bits",
+      "src_key_generation_lfsr_lfsrbitgenerator_generate_bytes",
+      "src_key_generation_lfsr_lfsrbitgenerator_init",
+      "src_key_generation_lfsr_lfsrbitgenerator_reset",
+      "src_key_generation_lfsr_lfsrbitgenerator_step",
+      "src_key_generation_lfsr_paperlfsrsubsequencegenerator",
+      "src_key_generation_lfsr_paperlfsrsubsequencegenerator_generate_subsequences",
+      "src_key_generation_lfsr_paperlfsrsubsequencegenerator_init",
+      "src_key_generation_lfsr_py_ndarray",
+      "src_key_generation_lfsr_rationale_1",
+      "src_key_generation_lfsr_rationale_13",
+      "src_key_generation_lfsr_rationale_32",
+      "src_key_generation_lfsr_rationale_36",
+      "src_key_generation_lfsr_rationale_51",
+      "src_key_generation_lfsr_rationale_58",
+      "src_key_generation_lfsr_rationale_70",
+      "src_key_generation_lfsr_rationale_84",
+      "src_pipeline_biometricblockchainpipeline_build_ga_training_dataset",
+      "src_pipeline_biometricblockchainpipeline_process_end_to_end",
+      "src_pipeline_biometricblockchainpipeline_run_baseline_comparisons",
+      "src_pipeline_py_ndarray",
+      "src_pipeline_rationale_173",
+      "src_pipeline_rationale_50",
+      "src_pipeline_rationale_88",
+      "tests_test_lfsr",
+      "tests_test_lfsr_rationale_1",
+      "tests_test_lfsr_test_lfsr_bit_generator_determinism",
+      "tests_test_lfsr_test_lfsr_bytes_generation",
+      "tests_test_lfsr_test_paper_lfsr_subsequence_generator"
+    ],
+    "4": [
+      "src_config",
+      "src_config_appconfig",
+      "src_config_biometricconfig",
+      "src_config_blockchainconfig",
+      "src_config_cryptographicconfig",
+      "src_config_rationale_1",
+      "src_key_generation_key_derivation",
+      "src_key_generation_key_derivation_hkdfkeyderiver",
+      "src_key_generation_key_derivation_hkdfkeyderiver_derive_key",
+      "src_key_generation_key_derivation_hkdfkeyderiver_init",
+      "src_key_generation_key_derivation_rationale_1",
+      "src_key_generation_key_derivation_rationale_15",
+      "src_key_generation_key_derivation_rationale_31",
+      "src_key_generation_seed_generator",
+      "src_key_generation_seed_generator_biometricseedgenerator",
+      "src_key_generation_seed_generator_biometricseedgenerator_generate_seed_bytes",
+      "src_key_generation_seed_generator_biometricseedgenerator_generate_seed_integer",
+      "src_key_generation_seed_generator_biometricseedgenerator_init",
+      "src_key_generation_seed_generator_py_ndarray",
+      "src_key_generation_seed_generator_rationale_1",
+      "src_key_generation_seed_generator_rationale_13",
+      "src_key_generation_seed_generator_rationale_21",
+      "src_key_generation_seed_generator_rationale_39",
+      "tests_test_key_derivation",
+      "tests_test_key_derivation_rationale_1",
+      "tests_test_key_derivation_test_hkdf_different_ikm_produces_different_keys",
+      "tests_test_key_derivation_test_hkdf_key_deriver",
+      "tests_test_key_derivation_test_seed_generator"
+    ],
+    "5": [
+      "src_config_gaconfig",
+      "src_optimization_genetic_algorithm",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_apply_mask",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_compute_fitness",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_init",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_mutate",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_optimize",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_tournament_selection",
+      "src_optimization_genetic_algorithm_geneticalgorithmoptimizer_uniform_crossover",
+      "src_optimization_genetic_algorithm_py_ndarray",
+      "src_optimization_genetic_algorithm_rationale_1",
+      "src_optimization_genetic_algorithm_rationale_106",
+      "src_optimization_genetic_algorithm_rationale_13",
+      "src_optimization_genetic_algorithm_rationale_170",
+      "src_optimization_genetic_algorithm_rationale_29",
+      "tests_test_ga",
+      "tests_test_ga_rationale_1",
+      "tests_test_ga_test_ga_apply_mask",
+      "tests_test_ga_test_ga_optimizer_initialization"
+    ],
+    "6": [
+      "src_encryption_aes",
+      "src_encryption_aes_aesgcmcipher",
+      "src_encryption_aes_aesgcmcipher_decrypt",
+      "src_encryption_aes_aesgcmcipher_encrypt",
+      "src_encryption_aes_aesgcmcipher_init",
+      "src_encryption_aes_rationale_1",
+      "src_encryption_aes_rationale_14",
+      "src_encryption_aes_rationale_34",
+      "src_encryption_aes_rationale_76",
+      "tests_test_encryption",
+      "tests_test_encryption_rationale_1",
+      "tests_test_encryption_test_aes_gcm_encrypt_decrypt",
+      "tests_test_encryption_test_aes_gcm_invalid_key_length",
+      "tests_test_encryption_test_aes_gcm_tamper_detection"
+    ],
+    "7": [
+      "src_biometric_face_detection",
+      "src_biometric_face_detection_facedetector",
+      "src_biometric_face_detection_facedetector_crop_face",
+      "src_biometric_face_detection_facedetector_detect_face",
+      "src_biometric_face_detection_facedetector_init",
+      "src_biometric_face_detection_py_ndarray",
+      "src_biometric_face_detection_rationale_1",
+      "src_biometric_face_detection_rationale_11",
+      "src_biometric_face_detection_rationale_20",
+      "src_biometric_face_detection_rationale_62",
+      "tests_test_biometric_test_face_detector_synthetic"
+    ],
+    "8": [
+      "randomstate",
+      "src_biometric_landmark_extraction_landmarkextractor_extract_landmarks",
+      "src_biometric_landmark_extraction_landmarkextractor_generate_canonical_face_landmarks",
+      "src_biometric_landmark_extraction_landmarkextractor_generate_synthetic_subject_landmarks",
+      "src_biometric_landmark_extraction_py_ndarray",
+      "src_biometric_landmark_extraction_rationale_107",
+      "src_biometric_landmark_extraction_rationale_32",
+      "src_biometric_landmark_extraction_rationale_78"
+    ],
+    "9": [
+      "src_biometric_preprocessing_featurenormalizer_normalize_landmarks",
+      "src_biometric_preprocessing_featurenormalizer_quantize_features",
+      "src_biometric_preprocessing_py_ndarray",
+      "src_biometric_preprocessing_rationale_21",
+      "src_biometric_preprocessing_rationale_64"
+    ],
+    "10": [
+      "src_blockchain_verifier_blockchainverifier_compute_ciphertext_hash",
+      "src_blockchain_verifier_blockchainverifier_verify_ciphertext_integrity",
+      "src_blockchain_verifier_py_any",
+      "src_blockchain_verifier_rationale_21",
+      "src_blockchain_verifier_rationale_29"
+    ],
+    "11": [
+      "src_biometric_init",
+      "src_biometric_init_rationale_1"
+    ],
+    "12": [
+      "src_blockchain_init",
+      "src_blockchain_init_rationale_1"
+    ],
+    "13": [
+      "src_encryption_init",
+      "src_encryption_init_rationale_1"
+    ],
+    "14": [
+      "src_evaluation_init",
+      "src_evaluation_init_rationale_1"
+    ],
+    "15": [
+      "src_init",
+      "src_init_rationale_1"
+    ],
+    "16": [
+      "src_key_generation_init",
+      "src_key_generation_init_rationale_1"
+    ],
+    "17": [
+      "src_optimization_init",
+      "src_optimization_init_rationale_1"
+    ],
+    "18": [
+      "src_pipeline_py_any"
+    ]
+  },
+  "cohesion": {
+    "0": 0.06914893617021277,
+    "1": 0.10793650793650794,
+    "2": 0.0873440285204991,
+    "3": 0.08333333333333333,
+    "4": 0.09523809523809523,
+    "5": 0.18421052631578946,
+    "6": 0.18681318681318682,
+    "7": 0.2,
+    "8": 0.32142857142857145,
+    "9": 0.4,
+    "10": 0.4,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_blockchain_blockchain_blockchain",
+      "label": "Blockchain",
+      "degree": 19
+    },
+    {
+      "id": "src_biometric_landmark_extraction_landmarkextractor",
+      "label": "LandmarkExtractor",
+      "degree": 19
+    },
+    {
+      "id": "src_blockchain_blockchain_transaction",
+      "label": "Transaction",
+      "degree": 14
+    },
+    {
+      "id": "src_optimization_genetic_algorithm_geneticalgorithmoptimizer",
+      "label": "GeneticAlgorithmOptimizer",
+      "degree": 14
+    },
+    {
+      "id": "src_pipeline_biometricblockchainpipeline",
+      "label": "BiometricBlockchainPipeline",
+      "degree": 13
+    },
+    {
+      "id": "src_biometric_preprocessing_featurenormalizer",
+      "label": "FeatureNormalizer",
+      "degree": 12
+    },
+    {
+      "id": "src_key_generation_lfsr_lfsrbitgenerator",
+      "label": "LFSRBitGenerator",
+      "degree": 12
+    },
+    {
+      "id": "src_blockchain_blockchain_block",
+      "label": "Block",
+      "degree": 11
+    },
+    {
+      "id": "src_encryption_aes_aesgcmcipher",
+      "label": "AESGCMCipher",
+      "degree": 11
+    },
+    {
+      "id": "src_blockchain_verifier_blockchainverifier",
+      "label": "BlockchainVerifier",
+      "degree": 9
+    }
+  ],
+  "surprises": [
+    {
+      "source": "test_lfsr_bit_generator_determinism()",
+      "target": "LFSRBitGenerator",
+      "source_files": [
+        "tests/test_lfsr.py",
+        "src/key_generation/lfsr.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_lfsr_bit_generator_determinism()` unexpectedly reaches hub `LFSRBitGenerator`"
+    },
+    {
+      "source": "test_lfsr_bytes_generation()",
+      "target": "LFSRBitGenerator",
+      "source_files": [
+        "tests/test_lfsr.py",
+        "src/key_generation/lfsr.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_lfsr_bytes_generation()` unexpectedly reaches hub `LFSRBitGenerator`"
+    },
+    {
+      "source": "test_paper_lfsr_subsequence_generator()",
+      "target": "PaperLFSRSubsequenceGenerator",
+      "source_files": [
+        "tests/test_lfsr.py",
+        "src/key_generation/lfsr.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_paper_lfsr_subsequence_generator()` unexpectedly reaches hub `PaperLFSRSubsequenceGenerator`"
+    },
+    {
+      "source": "test_hkdf_different_ikm_produces_different_keys()",
+      "target": "HKDFKeyDeriver",
+      "source_files": [
+        "tests/test_key_derivation.py",
+        "src/key_generation/key_derivation.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_hkdf_different_ikm_produces_different_keys()` unexpectedly reaches hub `HKDFKeyDeriver`"
+    },
+    {
+      "source": "test_hkdf_key_deriver()",
+      "target": "HKDFKeyDeriver",
+      "source_files": [
+        "tests/test_key_derivation.py",
+        "src/key_generation/key_derivation.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_hkdf_key_deriver()` unexpectedly reaches hub `HKDFKeyDeriver`"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
